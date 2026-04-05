@@ -1,0 +1,245 @@
+{
+  "harness": {
+    "vm_name": "win11-box",
+    "ssh_hostname": "10.20.45.24",
+    "ssh_username": "box",
+    "ssh_password": "1234",
+    "ssh_port": 22,
+    "sorted_dir": "harness/sorted_drivers/",
+    "results_dir": "harness/analysis_results/",
+    "dump_dir": "harness/analysis_results/",
+    "driver_load_timeout": 30,
+    "memory_dump_timeout": 60,
+    "vm_boot_timeout": 120,
+    "snapshot_name": "clean_state",
+    "batch_size": 1,
+    "windbg": {
+      "debugger_path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x64",
+      "connection_string": "net:port=50000,key=1.2.3.4",
+      "dump_type": "mini",
+      "local_dump_dir": "C:\\Users\\legitdev\\Downloads\\windows-defender-remover-main"
+    }
+  },
+  "analysis": {
+    "sink_definitions": [
+      {
+        "label": "CcCopyRead",
+        "imports": ["CcCopyRead"],
+        "asm": [],
+        "functions": [""],
+        "initial_callers": [],
+        "tags": ["ARBITRARY_WRITE", "HEAP_OVERFLOW", "INT_OVERFLOW", "STACK_OVERFLOW" ],
+        "danger_level": "2",
+        "parameters": [
+          {
+            "description": "FileObject",
+            "param_id": 0,
+            "tags": ["DATA_HANDLE"]
+          },
+          {
+            "description": "Buffer",
+            "param_id": 1,
+            "tags": ["DATA_SINK"]
+          },
+          {
+            "description": "Offset",
+            "param_id": 2,
+            "tags": ["DATA_EXPRESSION", "OFFSET_PARAM"]
+          },
+          {
+            "description": "Length",
+            "param_id": 3,
+            "tags": ["DATA_EXPRESSION", "SIZE_PARAM"]
+          }
+        ]
+      },
+      {
+        "label": "CopyMemory",
+        "imports": [],
+        "asm": ["rep movs", "movsb", "movsw", "movsd", "movsq"],
+        "functions": ["memcpy", "qmemcpy", "memmove", "RtlCopyMemory", "RtlMoveMemory"],
+        "initial_callers": [ "0x140086265" ],
+        "tags": ["ARBITRARY_WRITE", "HEAP_OVERFLOW", "INT_OVERFLOW", "STACK_OVERFLOW" ],
+        "danger_level": "2",
+        "parameters": [
+          {
+            "description": "dest",
+            "param_id": 0,
+            "tags": [ "DATA_SINK" ]
+          },
+          {
+            "description": "src",
+            "param_id": 1,
+            "tags": [ "DATA_SOURCE" ]
+          },
+          {
+            "description": "len",
+            "param_id": 2,
+            "tags": [ "DATA_EXPRESSION", "SIZE"]
+          }
+        ]
+      },
+      {
+        "label": "MmMapIoSpace",
+        "imports": ["MmMapIoSpace", "MmMapIoSpaceEx"],
+        "asm": [],
+        "functions": [""],
+        "initial_callers": [],
+        "tags": ["MISSING_VALIDATION" ],
+        "danger_level": "5",
+        "parameters": [
+          {
+            "description": "PhysicalAddress",
+            "param_id": 1,
+            "tags": ["DATA_EXPRESSION"]
+          },
+          {
+            "description": "NumberOfBytes",
+            "param_id": 2,
+            "tags": ["DATA_EXPRESSION", "SIZE"]
+          }
+        ]
+      },
+      {
+        "label": "WriteMsr",
+        "imports": ["WriteMsr"],
+        "asm": [],
+        "functions": [""],
+        "initial_callers": [],
+        "tags": ["MISSING_VALIDATION"],
+        "danger_level": "3",
+        "parameters": [
+          {
+            "description": "Msr",
+            "param_id": 1,
+            "tags": ["DATA_EXPRESSION", "MUST_VALIDATE"]
+          },
+          {
+            "description": "Value",
+            "param_id": 2,
+            "tags": ["DATA_EXPRESSION", "MUST_VALIDATE"]
+          }
+        ]
+      },
+      {
+        "label": "ZwMapViewOfSection",
+        "imports": ["ZwMapViewOfSection"],
+        "asm": [],
+        "functions": [""],
+        "initial_callers": [],
+        "danger_level": "1",
+        "parameters": [
+          {
+            "description": "SectionHandle",
+            "param_id": 1,
+            "tags": ["DATA_EXPRESSION", "MUST_VALIDATE"]
+          },
+          {
+            "description": "BaseAddress",
+            "param_id": 2,
+            "tags": ["DATA_EXPRESSION", "MUST_VALIDATE"]
+          },
+          {
+            "description": "ViewSize",
+            "param_id": 3,
+            "tags": ["DATA_EXPRESSION", "MUST_VALIDATE"]
+          }
+        ]
+      },
+      {
+        "label": "ZwOpenHandle",
+        "imports": ["ZwOpenHandle"],
+        "asm": [],
+        "functions": [""],
+        "initial_callers": [],
+        "danger_level": "1",
+        "parameters": [
+          {
+            "description": "ObjectAttributes",
+            "param_id": 1,
+            "tags": ["DATA_EXPRESSION", "MUST_VALIDATE" ]
+          }
+        ]
+      }
+    ],
+    "taint_patterns": {
+      "CR_write_prefix": "CR_write("
+    },
+    "tracer": {
+      "max_depth": 15,
+      "max_backtracks": 3,
+      "max_lookahead_callers": 3,
+      "max_caller_pseudocode_lines": 100,
+      "max_wrapper_nodes": 30
+    },
+    "smt": {
+      "timeout_ms": 30000,
+      "enable_repair": true,
+      "repair_max_retries": 3
+    },
+    "dashboard": {
+      "event_queue_size": 50000,
+      "emitter_queue_size": 10000
+    }
+  },
+  "hyperv": {
+    "iso_dir": "hyperv/iso",
+    "images_dir": "C:\\HyperV\\Images",
+    "diffs_dir": "C:\\HyperV\\Diffs",
+    "guest_username": "Admin",
+    "guest_password": "P@ssw0rd!",
+    "vm_switch": "Default Switch",
+    "vm_memory_bytes": 4294967296,
+    "vm_processor_count": 2,
+    "max_parallel_vms": 4,
+    "boot_timeout_s": 180,
+    "script_timeout_s": 300,
+    "guest_python": "C:\\Python3\\python.exe",
+    "guest_work_dir": "C:\\Work"
+  },
+  "vmware": {
+    "golden_vmx": "C:\\VMs\\golden\\vm.vmx",
+    "golden_vmdk": "C:\\VMs\\golden\\golden.vmdk",
+    "instance_dir": "C:\\VMs\\instances",
+    "vmrun_bin": "C:\\Program Files (x86)\\VMware\\VMware Workstation\\vmrun.exe",
+    "vdiskmanager_bin": "C:\\Program Files (x86)\\VMware\\VMware Workstation\\vmware-vdiskmanager.exe",
+    "pipe_name": "com_1",
+    "memory_mb": 8192,
+    "cpu_cores": 16,
+    "guest_user": "Admin",
+    "guest_pass": "P@ssw0rd!",
+    "display": "nogui",
+    "kdnet_hostip": "192.168.57.1",
+    "kdnet_port": 50000,
+    "kdnet_key": "und93x1bwfqb.1tosxab1ndcw0.1izni4xwko30c.19usqqh24nf1s"
+  },
+  "llm": {
+    "default_provider": "openai",
+    "max_tokens": 100000,
+    "openai_api_key": "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",
+    "exploitdev_handoff_model": "gpt-5.4-2026-03-05",
+    "exploitdev_strategy_model": "gpt-5.4-pro-2026-03-05",
+    "providers": {
+      "openai": {
+        "model": "gpt-5-mini-2025-08-07",
+        "env_key": "OPENAI_API_KEY"
+      },
+      "deepseek": {
+        "model": "deepseek-chat",
+        "env_key": "DEEPSEEK_API_KEY",
+        "base_url": "https://api.deepseek.com"
+      },
+      "openrouter": {
+        "model": "stepfun/step-3.5-flash:free",
+        "env_key": "OPENROUTER_API_KEY",
+        "base_url": "https://openrouter.ai/api/v1"
+      }
+    }
+  },
+  "neo4j": {
+    "uri": "bolt://127.0.0.1:7687",
+    "username": "neo4j",
+    "password": "lpefinder",
+    "database": "neo4j"
+  }
+}

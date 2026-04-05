@@ -1,0 +1,2474 @@
+{
+  "total_drivers": 8,
+  "analysis_timestamp": 0.0,
+  "sink_distribution": {
+    "WriteMsr": 0,
+    "MmMapIoSpace": 6,
+    "ZwMapViewOfSection": 2,
+    "ZwOpenHandle": 0,
+    "WRMSR": 2
+  },
+  "score_stats": {
+    "min": 0,
+    "max": 120,
+    "avg": 55.0
+  },
+  "drivers": [
+    {
+      "file_path": "..\\dataset\\gdrv.sys",
+      "sinks": [
+        {
+          "name": "MmMapIoSpace",
+          "function": "MmMapIoSpace",
+          "module": "ntoskrnl",
+          "ordinal": 0
+        },
+        {
+          "name": "ZwMapViewOfSection",
+          "function": "ZwMapViewOfSection",
+          "module": "ntoskrnl",
+          "ordinal": 0
+        }
+      ],
+      "wrmsr_count": 1,
+      "iat_entries": [
+        {
+          "module": "ntoskrnl",
+          "name": "KeAcquireInStackQueuedSpinLock",
+          "ordinal": 0,
+          "ea": 5368725520
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeReleaseInStackQueuedSpinLock",
+          "ordinal": 0,
+          "ea": 5368725528
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExAllocatePool",
+          "ordinal": 0,
+          "ea": 5368725536
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExFreePoolWithTag",
+          "ordinal": 0,
+          "ea": 5368725544
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmBuildMdlForNonPagedPool",
+          "ordinal": 0,
+          "ea": 5368725552
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmMapLockedPages",
+          "ordinal": 0,
+          "ea": 5368725560
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmUnmapLockedPages",
+          "ordinal": 0,
+          "ea": 5368725568
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmMapIoSpace",
+          "ordinal": 0,
+          "ea": 5368725576
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmUnmapIoSpace",
+          "ordinal": 0,
+          "ea": 5368725584
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmAllocateContiguousMemory",
+          "ordinal": 0,
+          "ea": 5368725592
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmFreeContiguousMemory",
+          "ordinal": 0,
+          "ea": 5368725600
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoAllocateMdl",
+          "ordinal": 0,
+          "ea": 5368725608
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IofCompleteRequest",
+          "ordinal": 0,
+          "ea": 5368725616
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "DbgPrint",
+          "ordinal": 0,
+          "ea": 5368725624
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateSymbolicLink",
+          "ordinal": 0,
+          "ea": 5368725632
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteDevice",
+          "ordinal": 0,
+          "ea": 5368725640
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteSymbolicLink",
+          "ordinal": 0,
+          "ea": 5368725648
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoFreeMdl",
+          "ordinal": 0,
+          "ea": 5368725656
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ObReferenceObjectByHandle",
+          "ordinal": 0,
+          "ea": 5368725664
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwClose",
+          "ordinal": 0,
+          "ea": 5368725672
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwOpenSection",
+          "ordinal": 0,
+          "ea": 5368725680
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwMapViewOfSection",
+          "ordinal": 0,
+          "ea": 5368725688
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwUnmapViewOfSection",
+          "ordinal": 0,
+          "ea": 5368725696
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmGetPhysicalAddress",
+          "ordinal": 0,
+          "ea": 5368725704
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmIsAddressValid",
+          "ordinal": 0,
+          "ea": 5368725712
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeBugCheckEx",
+          "ordinal": 0,
+          "ea": 5368725720
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateDevice",
+          "ordinal": 0,
+          "ea": 5368725728
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitUnicodeString",
+          "ordinal": 0,
+          "ea": 5368725736
+        },
+        {
+          "module": "HAL",
+          "name": "HalTranslateBusAddress",
+          "ordinal": 0,
+          "ea": 5368725504
+        }
+      ],
+      "score": 120,
+      "sink_details": {
+        "MmMapIoSpace": 1,
+        "ZwMapViewOfSection": 1
+      },
+      "new_path": "sorted_drivers\\001_gdrv.sys",
+      "priority_rank": 1
+    },
+    {
+      "file_path": "..\\dataset\\AsIO64.sys",
+      "sinks": [
+        {
+          "name": "ZwMapViewOfSection",
+          "function": "ZwMapViewOfSection",
+          "module": "ntoskrnl",
+          "ordinal": 0
+        }
+      ],
+      "wrmsr_count": 2,
+      "iat_entries": [
+        {
+          "module": "ntoskrnl",
+          "name": "ZwClose",
+          "ordinal": 0,
+          "ea": 77840
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwMapViewOfSection",
+          "ordinal": 0,
+          "ea": 77848
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ObReferenceObjectByHandle",
+          "ordinal": 0,
+          "ea": 77856
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwOpenSection",
+          "ordinal": 0,
+          "ea": 77864
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitUnicodeString",
+          "ordinal": 0,
+          "ea": 77872
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteDevice",
+          "ordinal": 0,
+          "ea": 77880
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeDelayExecutionThread",
+          "ordinal": 0,
+          "ea": 77888
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IofCompleteRequest",
+          "ordinal": 0,
+          "ea": 77896
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwUnmapViewOfSection",
+          "ordinal": 0,
+          "ea": 77904
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoIs32bitProcess",
+          "ordinal": 0,
+          "ea": 77912
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateSymbolicLink",
+          "ordinal": 0,
+          "ea": 77920
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateDevice",
+          "ordinal": 0,
+          "ea": 77928
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteSymbolicLink",
+          "ordinal": 0,
+          "ea": 77936
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "DbgPrint",
+          "ordinal": 0,
+          "ea": 77944
+        },
+        {
+          "module": "HAL",
+          "name": "HalTranslateBusAddress",
+          "ordinal": 0,
+          "ea": 77824
+        }
+      ],
+      "score": 70,
+      "sink_details": {
+        "ZwMapViewOfSection": 1
+      },
+      "new_path": "sorted_drivers\\002_AsIO64.sys",
+      "priority_rank": 2
+    },
+    {
+      "file_path": "..\\dataset\\atillk64.sys",
+      "sinks": [
+        {
+          "name": "MmMapIoSpace",
+          "function": "MmMapIoSpace",
+          "module": "ntoskrnl",
+          "ordinal": 0
+        }
+      ],
+      "wrmsr_count": 0,
+      "iat_entries": [
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteDevice",
+          "ordinal": 0,
+          "ea": 73752
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmUnmapIoSpace",
+          "ordinal": 0,
+          "ea": 73760
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmBuildMdlForNonPagedPool",
+          "ordinal": 0,
+          "ea": 73768
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoFreeMdl",
+          "ordinal": 0,
+          "ea": 73776
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmMapIoSpace",
+          "ordinal": 0,
+          "ea": 73784
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IofCompleteRequest",
+          "ordinal": 0,
+          "ea": 73792
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitUnicodeString",
+          "ordinal": 0,
+          "ea": 73800
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateDevice",
+          "ordinal": 0,
+          "ea": 73808
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoAllocateMdl",
+          "ordinal": 0,
+          "ea": 73816
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeBugCheckEx",
+          "ordinal": 0,
+          "ea": 73824
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmMapLockedPages",
+          "ordinal": 0,
+          "ea": 73832
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateSymbolicLink",
+          "ordinal": 0,
+          "ea": 73840
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteSymbolicLink",
+          "ordinal": 0,
+          "ea": 73848
+        },
+        {
+          "module": "HAL",
+          "name": "HalSetBusDataByOffset",
+          "ordinal": 0,
+          "ea": 73728
+        },
+        {
+          "module": "HAL",
+          "name": "HalGetBusDataByOffset",
+          "ordinal": 0,
+          "ea": 73736
+        }
+      ],
+      "score": 50,
+      "sink_details": {
+        "MmMapIoSpace": 1
+      },
+      "new_path": "sorted_drivers\\003_atillk64.sys",
+      "priority_rank": 3
+    },
+    {
+      "file_path": "..\\dataset\\hwdetectng.sys",
+      "sinks": [
+        {
+          "name": "MmMapIoSpace",
+          "function": "MmMapIoSpace",
+          "module": "ntoskrnl",
+          "ordinal": 0
+        }
+      ],
+      "wrmsr_count": 0,
+      "iat_entries": [
+        {
+          "module": "ntoskrnl",
+          "name": "KeInitializeEvent",
+          "ordinal": 0,
+          "ea": 81944
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitAnsiString",
+          "ordinal": 0,
+          "ea": 81952
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmUnmapIoSpace",
+          "ordinal": 0,
+          "ea": 81960
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlFreeUnicodeString",
+          "ordinal": 0,
+          "ea": 81968
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoGetDeviceObjectPointer",
+          "ordinal": 0,
+          "ea": 81976
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmMapIoSpace",
+          "ordinal": 0,
+          "ea": 81984
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IofCompleteRequest",
+          "ordinal": 0,
+          "ea": 81992
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeWaitForSingleObject",
+          "ordinal": 0,
+          "ea": 82000
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteDevice",
+          "ordinal": 0,
+          "ea": 82008
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateSymbolicLink",
+          "ordinal": 0,
+          "ea": 82016
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmIsAddressValid",
+          "ordinal": 0,
+          "ea": 82024
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ObfDereferenceObject",
+          "ordinal": 0,
+          "ea": 82032
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateDevice",
+          "ordinal": 0,
+          "ea": 82040
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoBuildDeviceIoControlRequest",
+          "ordinal": 0,
+          "ea": 82048
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteSymbolicLink",
+          "ordinal": 0,
+          "ea": 82056
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IofCallDriver",
+          "ordinal": 0,
+          "ea": 82064
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeBugCheckEx",
+          "ordinal": 0,
+          "ea": 82072
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitUnicodeString",
+          "ordinal": 0,
+          "ea": 82080
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "PsGetVersion",
+          "ordinal": 0,
+          "ea": 82088
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlAnsiStringToUnicodeString",
+          "ordinal": 0,
+          "ea": 82096
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "__C_specific_handler",
+          "ordinal": 0,
+          "ea": 82104
+        },
+        {
+          "module": "HAL",
+          "name": "HalSetBusDataByOffset",
+          "ordinal": 0,
+          "ea": 81920
+        },
+        {
+          "module": "HAL",
+          "name": "HalGetBusDataByOffset",
+          "ordinal": 0,
+          "ea": 81928
+        }
+      ],
+      "score": 50,
+      "sink_details": {
+        "MmMapIoSpace": 1
+      },
+      "new_path": "sorted_drivers\\004_hwdetectng.sys",
+      "priority_rank": 4
+    },
+    {
+      "file_path": "..\\dataset\\IOMap64.sys",
+      "sinks": [
+        {
+          "name": "MmMapIoSpace",
+          "function": "MmMapIoSpace",
+          "module": "ntoskrnl",
+          "ordinal": 0
+        }
+      ],
+      "wrmsr_count": 0,
+      "iat_entries": [
+        {
+          "module": "ntoskrnl",
+          "name": "KeInitializeMutex",
+          "ordinal": 0,
+          "ea": 81944
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitUnicodeString",
+          "ordinal": 0,
+          "ea": 81952
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteDevice",
+          "ordinal": 0,
+          "ea": 81960
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmUnmapIoSpace",
+          "ordinal": 0,
+          "ea": 81968
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmMapIoSpace",
+          "ordinal": 0,
+          "ea": 81976
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "PoStartNextPowerIrp",
+          "ordinal": 0,
+          "ea": 81984
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IofCompleteRequest",
+          "ordinal": 0,
+          "ea": 81992
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExFreePoolWithTag",
+          "ordinal": 0,
+          "ea": 82000
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateSymbolicLink",
+          "ordinal": 0,
+          "ea": 82008
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateDevice",
+          "ordinal": 0,
+          "ea": 82016
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IofCallDriver",
+          "ordinal": 0,
+          "ea": 82024
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeReleaseMutex",
+          "ordinal": 0,
+          "ea": 82032
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeWaitForSingleObject",
+          "ordinal": 0,
+          "ea": 82040
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeBugCheckEx",
+          "ordinal": 0,
+          "ea": 82048
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteSymbolicLink",
+          "ordinal": 0,
+          "ea": 82056
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "PoCallDriver",
+          "ordinal": 0,
+          "ea": 82064
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExAllocatePoolWithTag",
+          "ordinal": 0,
+          "ea": 82072
+        },
+        {
+          "module": "HAL",
+          "name": "HalTranslateBusAddress",
+          "ordinal": 0,
+          "ea": 81920
+        },
+        {
+          "module": "HAL",
+          "name": "KeStallExecutionProcessor",
+          "ordinal": 0,
+          "ea": 81928
+        }
+      ],
+      "score": 50,
+      "sink_details": {
+        "MmMapIoSpace": 1
+      },
+      "new_path": "sorted_drivers\\005_IOMap64.sys",
+      "priority_rank": 5
+    },
+    {
+      "file_path": "..\\dataset\\iqvw64e.sys",
+      "sinks": [
+        {
+          "name": "MmMapIoSpace",
+          "function": "MmMapIoSpace",
+          "module": "ntoskrnl",
+          "ordinal": 0
+        }
+      ],
+      "wrmsr_count": 0,
+      "iat_entries": [
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateSymbolicLink",
+          "ordinal": 0,
+          "ea": 90136
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IofCompleteRequest",
+          "ordinal": 0,
+          "ea": 90144
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmIsAddressValid",
+          "ordinal": 0,
+          "ea": 90152
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExAllocatePoolWithTag",
+          "ordinal": 0,
+          "ea": 90160
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExFreePoolWithTag",
+          "ordinal": 0,
+          "ea": 90168
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmGetPhysicalAddress",
+          "ordinal": 0,
+          "ea": 90176
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "DbgPrint",
+          "ordinal": 0,
+          "ea": 90184
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "strncpy",
+          "ordinal": 0,
+          "ea": 90192
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "vsprintf",
+          "ordinal": 0,
+          "ea": 90200
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoFreeMdl",
+          "ordinal": 0,
+          "ea": 90208
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmMapLockedPagesSpecifyCache",
+          "ordinal": 0,
+          "ea": 90216
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmBuildMdlForNonPagedPool",
+          "ordinal": 0,
+          "ea": 90224
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoAllocateMdl",
+          "ordinal": 0,
+          "ea": 90232
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmUnmapIoSpace",
+          "ordinal": 0,
+          "ea": 90240
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmUnmapLockedPages",
+          "ordinal": 0,
+          "ea": 90248
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmAllocateContiguousMemory",
+          "ordinal": 0,
+          "ea": 90256
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmFreeContiguousMemory",
+          "ordinal": 0,
+          "ea": 90264
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmMapIoSpace",
+          "ordinal": 0,
+          "ea": 90272
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitUnicodeString",
+          "ordinal": 0,
+          "ea": 90280
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeWaitForSingleObject",
+          "ordinal": 0,
+          "ea": 90288
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IofCallDriver",
+          "ordinal": 0,
+          "ea": 90296
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoBuildSynchronousFsdRequest",
+          "ordinal": 0,
+          "ea": 90304
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeInitializeEvent",
+          "ordinal": 0,
+          "ea": 90312
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwClose",
+          "ordinal": 0,
+          "ea": 90320
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlFreeAnsiString",
+          "ordinal": 0,
+          "ea": 90328
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "strstr",
+          "ordinal": 0,
+          "ea": 90336
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlUnicodeStringToAnsiString",
+          "ordinal": 0,
+          "ea": 90344
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwEnumerateValueKey",
+          "ordinal": 0,
+          "ea": 90352
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwOpenKey",
+          "ordinal": 0,
+          "ea": 90360
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "wcsncpy",
+          "ordinal": 0,
+          "ea": 90368
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoGetDeviceObjectPointer",
+          "ordinal": 0,
+          "ea": 90376
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoGetDeviceInterfaces",
+          "ordinal": 0,
+          "ea": 90384
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ObReferenceObjectByPointer",
+          "ordinal": 0,
+          "ea": 90392
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmAllocateNonCachedMemory",
+          "ordinal": 0,
+          "ea": 90400
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmFreeNonCachedMemory",
+          "ordinal": 0,
+          "ea": 90408
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeBugCheckEx",
+          "ordinal": 0,
+          "ea": 90416
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteSymbolicLink",
+          "ordinal": 0,
+          "ea": 90424
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ObfDereferenceObject",
+          "ordinal": 0,
+          "ea": 90432
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteDevice",
+          "ordinal": 0,
+          "ea": 90440
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmGetSystemRoutineAddress",
+          "ordinal": 0,
+          "ea": 90448
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwSetSecurityObject",
+          "ordinal": 0,
+          "ea": 90456
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ObOpenObjectByPointer",
+          "ordinal": 0,
+          "ea": 90464
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeviceObjectType",
+          "ordinal": 0,
+          "ea": 90472
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateDevice",
+          "ordinal": 0,
+          "ea": 90480
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlGetDaclSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 90488
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlGetSaclSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 90496
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlGetGroupSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 90504
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlGetOwnerSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 90512
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "_snwprintf",
+          "ordinal": 0,
+          "ea": 90520
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlLengthSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 90528
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeCaptureSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 90536
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeExports",
+          "ordinal": 0,
+          "ea": 90544
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoIsWdmVersionAvailable",
+          "ordinal": 0,
+          "ea": 90552
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "_wcsnicmp",
+          "ordinal": 0,
+          "ea": 90560
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlAddAccessAllowedAce",
+          "ordinal": 0,
+          "ea": 90568
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlLengthSid",
+          "ordinal": 0,
+          "ea": 90576
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "wcschr",
+          "ordinal": 0,
+          "ea": 90584
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlAbsoluteToSelfRelativeSD",
+          "ordinal": 0,
+          "ea": 90592
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlSetDaclSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 90600
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlCreateSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 90608
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwCreateKey",
+          "ordinal": 0,
+          "ea": 90616
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwQueryValueKey",
+          "ordinal": 0,
+          "ea": 90624
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwSetValueKey",
+          "ordinal": 0,
+          "ea": 90632
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlFreeUnicodeString",
+          "ordinal": 0,
+          "ea": 90640
+        },
+        {
+          "module": "HAL",
+          "name": "KeStallExecutionProcessor",
+          "ordinal": 0,
+          "ea": 90112
+        },
+        {
+          "module": "HAL",
+          "name": "KeQueryPerformanceCounter",
+          "ordinal": 0,
+          "ea": 90120
+        }
+      ],
+      "score": 50,
+      "sink_details": {
+        "MmMapIoSpace": 1
+      },
+      "new_path": "sorted_drivers\\006_iqvw64e.sys",
+      "priority_rank": 6
+    },
+    {
+      "file_path": "..\\dataset\\UcmCxUcsiNvppc.sys",
+      "sinks": [
+        {
+          "name": "MmMapIoSpace",
+          "function": "MmMapIoSpaceEx",
+          "module": "ntoskrnl",
+          "ordinal": 0
+        }
+      ],
+      "wrmsr_count": 0,
+      "iat_entries": [
+        {
+          "module": "WDFLDR",
+          "name": "WdfVersionUnbind",
+          "ordinal": 0,
+          "ea": 126976
+        },
+        {
+          "module": "WDFLDR",
+          "name": "WdfVersionBindClass",
+          "ordinal": 0,
+          "ea": 126984
+        },
+        {
+          "module": "WDFLDR",
+          "name": "WdfVersionUnbindClass",
+          "ordinal": 0,
+          "ea": 126992
+        },
+        {
+          "module": "WDFLDR",
+          "name": "WdfVersionBind",
+          "ordinal": 0,
+          "ea": 127000
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoWMIRegistrationControl",
+          "ordinal": 0,
+          "ea": 127016
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "EtwUnregister",
+          "ordinal": 0,
+          "ea": 127024
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitUnicodeString",
+          "ordinal": 0,
+          "ea": 127032
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmGetSystemRoutineAddress",
+          "ordinal": 0,
+          "ea": 127040
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlGetVersion",
+          "ordinal": 0,
+          "ea": 127048
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "EtwRegister",
+          "ordinal": 0,
+          "ea": 127056
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlCompareMemory",
+          "ordinal": 0,
+          "ea": 127064
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "EtwWriteTransfer",
+          "ordinal": 0,
+          "ea": 127072
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "_vsnwprintf",
+          "ordinal": 0,
+          "ea": 127080
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmMapIoSpaceEx",
+          "ordinal": 0,
+          "ea": 127088
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmUnmapIoSpace",
+          "ordinal": 0,
+          "ea": 127096
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExAllocatePoolWithTag",
+          "ordinal": 0,
+          "ea": 127104
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExFreePoolWithTag",
+          "ordinal": 0,
+          "ea": 127112
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "_vsnprintf",
+          "ordinal": 0,
+          "ea": 127120
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "DbgPrint",
+          "ordinal": 0,
+          "ea": 127128
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeDelayExecutionThread",
+          "ordinal": 0,
+          "ea": 127136
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "strchr",
+          "ordinal": 0,
+          "ea": 127144
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "strncpy_s",
+          "ordinal": 0,
+          "ea": 127152
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlCopyUnicodeString",
+          "ordinal": 0,
+          "ea": 127160
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "strcmp",
+          "ordinal": 0,
+          "ea": 127168
+        }
+      ],
+      "score": 50,
+      "sink_details": {
+        "MmMapIoSpace": 1
+      },
+      "new_path": "sorted_drivers\\007_UcmCxUcsiNvppc.sys",
+      "priority_rank": 7
+    },
+    {
+      "file_path": "..\\dataset\\clfs_KB5058919_22H2_win11.sys",
+      "sinks": [],
+      "wrmsr_count": 0,
+      "iat_entries": [
+        {
+          "module": "ntoskrnl",
+          "name": "ExAllocatePoolWithTag",
+          "ordinal": 0,
+          "ea": 7516344320
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExFreePoolWithTag",
+          "ordinal": 0,
+          "ea": 7516344328
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "__C_specific_handler",
+          "ordinal": 0,
+          "ea": 7516344336
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitUnicodeString",
+          "ordinal": 0,
+          "ea": 7516344344
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmGetSystemRoutineAddress",
+          "ordinal": 0,
+          "ea": 7516344352
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoWMIRegistrationControl",
+          "ordinal": 0,
+          "ea": 7516344360
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlQueryFeatureConfiguration",
+          "ordinal": 0,
+          "ea": 7516344368
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlRegisterFeatureConfigurationChangeNotification",
+          "ordinal": 0,
+          "ea": 7516344376
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlQueryFeatureConfigurationChangeStamp",
+          "ordinal": 0,
+          "ea": 7516344384
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateDevice",
+          "ordinal": 0,
+          "ea": 7516344392
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlUnregisterFeatureConfigurationChangeNotification",
+          "ordinal": 0,
+          "ea": 7516344400
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateSymbolicLink",
+          "ordinal": 0,
+          "ea": 7516344408
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "FsRtlIsNtstatusExpected",
+          "ordinal": 0,
+          "ea": 7516344416
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoUnregisterFileSystem",
+          "ordinal": 0,
+          "ea": 7516344424
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoDeleteSymbolicLink",
+          "ordinal": 0,
+          "ea": 7516344432
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlQueryRegistryValuesEx",
+          "ordinal": 0,
+          "ea": 7516344440
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeEnterCriticalRegion",
+          "ordinal": 0,
+          "ea": 7516344448
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeLeaveCriticalRegion",
+          "ordinal": 0,
+          "ea": 7516344456
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExDeleteResourceLite",
+          "ordinal": 0,
+          "ea": 7516344464
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExInitializeResourceLite",
+          "ordinal": 0,
+          "ea": 7516344472
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExAcquireResourceExclusiveLite",
+          "ordinal": 0,
+          "ea": 7516344480
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExReleaseResourceForThreadLite",
+          "ordinal": 0,
+          "ea": 7516344488
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlCompareMemory",
+          "ordinal": 0,
+          "ea": 7516344496
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExAcquireResourceSharedLite",
+          "ordinal": 0,
+          "ea": 7516344504
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlLengthSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 7516344512
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlValidSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 7516344520
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeQuerySecurityDescriptorInfo",
+          "ordinal": 0,
+          "ea": 7516344528
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "DbgPrint",
+          "ordinal": 0,
+          "ea": 7516344536
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlPrefixUnicodeString",
+          "ordinal": 0,
+          "ea": 7516344544
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlCopyUnicodeString",
+          "ordinal": 0,
+          "ea": 7516344552
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "qsort",
+          "ordinal": 0,
+          "ea": 7516344560
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInsertElementGenericTableAvl",
+          "ordinal": 0,
+          "ea": 7516344568
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlLookupElementGenericTableAvl",
+          "ordinal": 0,
+          "ea": 7516344576
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitializeGenericTableAvl",
+          "ordinal": 0,
+          "ea": 7516344584
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlNumberGenericTableElementsAvl",
+          "ordinal": 0,
+          "ea": 7516344592
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlEnumerateGenericTableAvl",
+          "ordinal": 0,
+          "ea": 7516344600
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlDeleteElementGenericTableAvl",
+          "ordinal": 0,
+          "ea": 7516344608
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeCaptureSubjectContext",
+          "ordinal": 0,
+          "ea": 7516344616
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlLengthRequiredSid",
+          "ordinal": 0,
+          "ea": 7516344624
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitializeSid",
+          "ordinal": 0,
+          "ea": 7516344632
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlSubAuthoritySid",
+          "ordinal": 0,
+          "ea": 7516344640
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlCreateAcl",
+          "ordinal": 0,
+          "ea": 7516344648
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlAddAccessAllowedAce",
+          "ordinal": 0,
+          "ea": 7516344656
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlCreateSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 7516344664
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlSetDaclSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 7516344672
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeAssignSecurity",
+          "ordinal": 0,
+          "ea": 7516344680
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoGetFileObjectGenericMapping",
+          "ordinal": 0,
+          "ea": 7516344688
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeReleaseSubjectContext",
+          "ordinal": 0,
+          "ea": 7516344696
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeDeassignSecurity",
+          "ordinal": 0,
+          "ea": 7516344704
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlUpcaseUnicodeChar",
+          "ordinal": 0,
+          "ea": 7516344712
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExAllocatePoolWithQuotaTag",
+          "ordinal": 0,
+          "ea": 7516344720
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitializeBitMap",
+          "ordinal": 0,
+          "ea": 7516344728
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlClearAllBits",
+          "ordinal": 0,
+          "ea": 7516344736
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExFreeToNPagedLookasideList",
+          "ordinal": 0,
+          "ea": 7516344744
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ObfDereferenceObject",
+          "ordinal": 0,
+          "ea": 7516344752
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwClose",
+          "ordinal": 0,
+          "ea": 7516344760
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ObReferenceObjectByHandle",
+          "ordinal": 0,
+          "ea": 7516344768
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwCreateEvent",
+          "ordinal": 0,
+          "ea": 7516344776
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeClearEvent",
+          "ordinal": 0,
+          "ea": 7516344784
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExAllocateFromPagedLookasideList",
+          "ordinal": 0,
+          "ea": 7516344792
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExUuidCreate",
+          "ordinal": 0,
+          "ea": 7516344800
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeWaitForSingleObject",
+          "ordinal": 0,
+          "ea": 7516344808
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeSetEvent",
+          "ordinal": 0,
+          "ea": 7516344816
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwOpenThreadTokenEx",
+          "ordinal": 0,
+          "ea": 7516344824
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwOpenProcessTokenEx",
+          "ordinal": 0,
+          "ea": 7516344832
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwQuerySecurityObject",
+          "ordinal": 0,
+          "ea": 7516344840
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwDuplicateToken",
+          "ordinal": 0,
+          "ea": 7516344848
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwSetInformationThread",
+          "ordinal": 0,
+          "ea": 7516344856
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ZwAdjustPrivilegesToken",
+          "ordinal": 0,
+          "ea": 7516344864
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlValidRelativeSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 7516344872
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlSelfRelativeToAbsoluteSD",
+          "ordinal": 0,
+          "ea": 7516344880
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlSetSaclSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 7516344888
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlSelfRelativeToAbsoluteSD2",
+          "ordinal": 0,
+          "ea": 7516344896
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeTokenType",
+          "ordinal": 0,
+          "ea": 7516344904
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeTokenImpersonationLevel",
+          "ordinal": 0,
+          "ea": 7516344912
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeQueryInformationToken",
+          "ordinal": 0,
+          "ea": 7516344920
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlSetOwnerSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 7516344928
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlSetGroupSecurityDescriptor",
+          "ordinal": 0,
+          "ea": 7516344936
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlAbsoluteToSelfRelativeSD",
+          "ordinal": 0,
+          "ea": 7516344944
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlNumberOfClearBits",
+          "ordinal": 0,
+          "ea": 7516344952
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlFindClearBits",
+          "ordinal": 0,
+          "ea": 7516344960
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlSetBits",
+          "ordinal": 0,
+          "ea": 7516344968
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlClearBits",
+          "ordinal": 0,
+          "ea": 7516344976
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlNumberOfSetBits",
+          "ordinal": 0,
+          "ea": 7516344984
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeSetSecurityDescriptorInfo",
+          "ordinal": 0,
+          "ea": 7516344992
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeFreePrivileges",
+          "ordinal": 0,
+          "ea": 7516345000
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeUnlockSubjectContext",
+          "ordinal": 0,
+          "ea": 7516345008
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeAppendPrivileges",
+          "ordinal": 0,
+          "ea": 7516345016
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeAccessCheck",
+          "ordinal": 0,
+          "ea": 7516345024
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeLockSubjectContext",
+          "ordinal": 0,
+          "ea": 7516345032
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExInitializeNPagedLookasideList",
+          "ordinal": 0,
+          "ea": 7516345040
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExDeleteNPagedLookasideList",
+          "ordinal": 0,
+          "ea": 7516345048
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlAppendUnicodeStringToString",
+          "ordinal": 0,
+          "ea": 7516345056
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExInitializePagedLookasideList",
+          "ordinal": 0,
+          "ea": 7516345064
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExDeletePagedLookasideList",
+          "ordinal": 0,
+          "ea": 7516345072
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExFreeToPagedLookasideList",
+          "ordinal": 0,
+          "ea": 7516345080
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "FsRtlInitializeExtraCreateParameterList",
+          "ordinal": 0,
+          "ea": 7516345088
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "FsRtlInitializeExtraCreateParameter",
+          "ordinal": 0,
+          "ea": 7516345096
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "FsRtlInsertExtraCreateParameter",
+          "ordinal": 0,
+          "ea": 7516345104
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateFileEx",
+          "ordinal": 0,
+          "ea": 7516345112
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoGetRelatedDeviceObject",
+          "ordinal": 0,
+          "ea": 7516345120
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeBugCheckEx",
+          "ordinal": 0,
+          "ea": 7516345128
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateFileSpecifyDeviceObjectHint",
+          "ordinal": 0,
+          "ea": 7516345136
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ObfReferenceObject",
+          "ordinal": 0,
+          "ea": 7516345144
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmMapLockedPagesSpecifyCache",
+          "ordinal": 0,
+          "ea": 7516345152
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoAllocateIrpEx",
+          "ordinal": 0,
+          "ea": 7516345160
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoAllocateMdl",
+          "ordinal": 0,
+          "ea": 7516345168
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoBuildPartialMdl",
+          "ordinal": 0,
+          "ea": 7516345176
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmProbeAndLockPages",
+          "ordinal": 0,
+          "ea": 7516345184
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IofCallDriver",
+          "ordinal": 0,
+          "ea": 7516345192
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeGetCurrentIrql",
+          "ordinal": 0,
+          "ea": 7516345200
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoFreeIrp",
+          "ordinal": 0,
+          "ea": 7516345208
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoFreeMdl",
+          "ordinal": 0,
+          "ea": 7516345216
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "MmUnlockPages",
+          "ordinal": 0,
+          "ea": 7516345224
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoBuildAsynchronousFsdRequest",
+          "ordinal": 0,
+          "ea": 7516345232
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoGetTopLevelIrp",
+          "ordinal": 0,
+          "ea": 7516345240
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoSetTopLevelIrp",
+          "ordinal": 0,
+          "ea": 7516345248
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoQueueWorkItem",
+          "ordinal": 0,
+          "ea": 7516345256
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "_purecall",
+          "ordinal": 0,
+          "ea": 7516345264
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlNotifyFeatureUsage",
+          "ordinal": 0,
+          "ea": 7516345272
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IofCompleteRequest",
+          "ordinal": 0,
+          "ea": 7516345280
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeInitializeSpinLock",
+          "ordinal": 0,
+          "ea": 7516345288
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeInitializeEvent",
+          "ordinal": 0,
+          "ea": 7516345296
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoIsOperationSynchronous",
+          "ordinal": 0,
+          "ea": 7516345304
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlIsSandboxedToken",
+          "ordinal": 0,
+          "ea": 7516345312
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "FsRtlGetEcpListFromIrp",
+          "ordinal": 0,
+          "ea": 7516345320
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "FsRtlFindExtraCreateParameter",
+          "ordinal": 0,
+          "ea": 7516345328
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExAcquireFastMutexUnsafe",
+          "ordinal": 0,
+          "ea": 7516345336
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExReleaseFastMutexUnsafe",
+          "ordinal": 0,
+          "ea": 7516345344
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlLookupElementGenericTableFullAvl",
+          "ordinal": 0,
+          "ea": 7516345352
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInsertElementGenericTableFullAvl",
+          "ordinal": 0,
+          "ea": 7516345360
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoIs32bitProcess",
+          "ordinal": 0,
+          "ea": 7516345368
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ProbeForRead",
+          "ordinal": 0,
+          "ea": 7516345376
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ProbeForWrite",
+          "ordinal": 0,
+          "ea": 7516345384
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoAllocateIrp",
+          "ordinal": 0,
+          "ea": 7516345392
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExInterlockedInsertTailList",
+          "ordinal": 0,
+          "ea": 7516345400
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoFreeWorkItem",
+          "ordinal": 0,
+          "ea": 7516345408
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoAllocateWorkItem",
+          "ordinal": 0,
+          "ea": 7516345416
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExAllocateFromNPagedLookasideList",
+          "ordinal": 0,
+          "ea": 7516345424
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExInterlockedRemoveHeadList",
+          "ordinal": 0,
+          "ea": 7516345432
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExReleaseResourceLite",
+          "ordinal": 0,
+          "ea": 7516345440
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlCompareUnicodeString",
+          "ordinal": 0,
+          "ea": 7516345448
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCheckShareAccess",
+          "ordinal": 0,
+          "ea": 7516345456
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoSetShareAccess",
+          "ordinal": 0,
+          "ea": 7516345464
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExIsResourceAcquiredSharedLite",
+          "ordinal": 0,
+          "ea": 7516345472
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExIsResourceAcquiredExclusiveLite",
+          "ordinal": 0,
+          "ea": 7516345480
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoRemoveShareAccess",
+          "ordinal": 0,
+          "ea": 7516345488
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "CcPurgeCacheSection",
+          "ordinal": 0,
+          "ea": 7516345496
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExpInterlockedPopEntrySList",
+          "ordinal": 0,
+          "ea": 7516345504
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExQueryDepthSList",
+          "ordinal": 0,
+          "ea": 7516345512
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "CcUninitializeCacheMap",
+          "ordinal": 0,
+          "ea": 7516345520
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "CcSetReadAheadGranularity",
+          "ordinal": 0,
+          "ea": 7516345528
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "CcSetAdditionalCacheAttributes",
+          "ordinal": 0,
+          "ea": 7516345536
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "CcInitializeCacheMap",
+          "ordinal": 0,
+          "ea": 7516345544
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCsqRemoveNextIrp",
+          "ordinal": 0,
+          "ea": 7516345552
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExAcquireFastMutex",
+          "ordinal": 0,
+          "ea": 7516345560
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExReleaseFastMutex",
+          "ordinal": 0,
+          "ea": 7516345568
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "InitializeSListHead",
+          "ordinal": 0,
+          "ea": 7516345576
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCreateStreamFileObjectLite",
+          "ordinal": 0,
+          "ea": 7516345584
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExGetPreviousMode",
+          "ordinal": 0,
+          "ea": 7516345592
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeAcquireSpinLockRaiseToDpc",
+          "ordinal": 0,
+          "ea": 7516345600
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeReleaseSpinLock",
+          "ordinal": 0,
+          "ea": 7516345608
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeDelayExecutionThread",
+          "ordinal": 0,
+          "ea": 7516345616
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCsqInsertIrpEx",
+          "ordinal": 0,
+          "ea": 7516345624
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "CcUnpinData",
+          "ordinal": 0,
+          "ea": 7516345632
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "CcMapData",
+          "ordinal": 0,
+          "ea": 7516345640
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExInterlockedInsertHeadList",
+          "ordinal": 0,
+          "ea": 7516345648
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "CcCopyRead",
+          "ordinal": 0,
+          "ea": 7516345656
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExpInterlockedPushEntrySList",
+          "ordinal": 0,
+          "ea": 7516345664
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "IoCsqInitializeEx",
+          "ordinal": 0,
+          "ea": 7516345672
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlAppendUnicodeToString",
+          "ordinal": 0,
+          "ea": 7516345680
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "CcSetFileSizes",
+          "ordinal": 0,
+          "ea": 7516345688
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInsertUnicodePrefix",
+          "ordinal": 0,
+          "ea": 7516345696
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "PsRevertToSelf",
+          "ordinal": 0,
+          "ea": 7516345704
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlAnsiStringToUnicodeString",
+          "ordinal": 0,
+          "ea": 7516345712
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeImpersonateClientEx",
+          "ordinal": 0,
+          "ea": 7516345720
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "_vsnprintf",
+          "ordinal": 0,
+          "ea": 7516345728
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "ExQueueWorkItem",
+          "ordinal": 0,
+          "ea": 7516345736
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitAnsiString",
+          "ordinal": 0,
+          "ea": 7516345744
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeInsertQueue",
+          "ordinal": 0,
+          "ea": 7516345752
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeRemoveQueue",
+          "ordinal": 0,
+          "ea": 7516345760
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeInitializeQueue",
+          "ordinal": 0,
+          "ea": 7516345768
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeInitializeApc",
+          "ordinal": 0,
+          "ea": 7516345776
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeInsertQueueApc",
+          "ordinal": 0,
+          "ea": 7516345784
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeReadStateQueue",
+          "ordinal": 0,
+          "ea": 7516345792
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "KeRundownQueue",
+          "ordinal": 0,
+          "ea": 7516345800
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeDeleteClientSecurity",
+          "ordinal": 0,
+          "ea": 7516345808
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "SeCreateClientSecurityFromSubjectContext",
+          "ordinal": 0,
+          "ea": 7516345816
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlRemoveUnicodePrefix",
+          "ordinal": 0,
+          "ea": 7516345824
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlInitializeUnicodePrefix",
+          "ordinal": 0,
+          "ea": 7516345832
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "RtlFindUnicodePrefix",
+          "ordinal": 0,
+          "ea": 7516345840
+        },
+        {
+          "module": "ntoskrnl",
+          "name": "_local_unwind",
+          "ordinal": 0,
+          "ea": 7516345848
+        }
+      ],
+      "score": 0,
+      "sink_details": {},
+      "new_path": "sorted_drivers\\008_clfs_KB5058919_22H2_win11.sys",
+      "priority_rank": 8
+    }
+  ]
+}

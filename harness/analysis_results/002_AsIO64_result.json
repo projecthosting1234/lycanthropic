@@ -1,0 +1,6 @@
+{
+  "driver": "002_AsIO64.sys",
+  "memory_dump": "analysis_results\\002_AsIO64.dmp",
+  "analysis_timestamp": 1771345979.1101842,
+  "status": "completed"
+}

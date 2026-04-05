@@ -1,0 +1,79 @@
+/* ================================================================
+   UTILITIES — Scrollbar, animations, helpers, responsive
+   ================================================================ */
+
+/* ── Scrollbar theming ───────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-mid);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-hover);
+}
+
+/* ── Hidden ──────────────────────────────────────────────────── */
+
+.hidden {
+  display: none !important;
+}
+
+/* ── Animations ──────────────────────────────────────────────── */
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes log-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dot-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  50% { box-shadow: 0 0 0 8px transparent; }
+}
+
+@keyframes logo-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* ── Utility classes ─────────────────────────────────────────── */
+
+.dim { color: var(--text-dim); }
+.small { font-size: 11px; }
+
+.mono-lg {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  word-break: break-all;
+}
+
+.mono-sm {
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* ── Panel section visibility ────────────────────────────────── */
+
+.panel-section.hidden {
+  display: none;
+}

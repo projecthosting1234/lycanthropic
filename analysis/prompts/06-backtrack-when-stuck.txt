@@ -1,0 +1,36 @@
+BACKTRACK_OR_NEXT_JSON — When stuck, pick backtrack target + unexplored branch
+
+You are handling a stalled climb in a Windows driver call/registration graph.
+The tool tracks explored branches; your job is to choose the best recovery action.
+
+STATE
+- Sink: {sink_name} @ {sink_ea}
+- Current chain (sink → ... → current):
+{call_chain_text}
+- Current function: {current_name} @ {current_ea}
+- Depth: {depth} / MaxDepth: {max_depth}
+- Backtracks used: {backtracks_used} / MaxBacktracks: {max_backtracks}
+
+WHY STALLED
+{stall_reason_text}
+Examples: "no CodeRefsTo and no DataRefsTo edges", "all candidates already visited", "decompile failed"
+
+FRONTIER (saved forks with untried candidates)
+{frontier_state_json}
+
+RECENT DECISIONS (most recent first)
+{recent_decisions_json}
+
+OUTPUT REQUIREMENTS
+Return STRICT JSON only with EXACTLY this schema:
+
+{
+  "action": "backtrack"|"try_alternate_edge"|"request_more_context"|"terminate",
+  "backtrack_to": { "name": string, "ea": string }|null,
+  "next_edge_hint": {
+    "edge_kind": "direct_caller"|"registrant"|null,
+    "from_function": { "name": string, "ea": string }|null
+  },
+  "reason": string,
+  "confidence": number
+}

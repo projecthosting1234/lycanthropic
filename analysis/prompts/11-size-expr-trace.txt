@@ -1,0 +1,62 @@
+SIZE_EXPR_TRACE_JSON — Build SMT expression for allocation size parameter
+
+You are analyzing a function to trace how an allocation size parameter is computed and build an SMT constraint expression.
+
+FUNCTION: {function_name} @ {function_ea}
+TARGET SIZE VARIABLE: {target_size_var}
+ALLOCATOR: {allocator_name}
+DEPTH: {current_depth}/{max_depth}
+
+PSEUDOCODE:
+```c
+{pseudocode}
+```
+
+SYMBOL TABLE (available symbols from taint analysis):
+{symbol_table_json}
+
+TASK:
+1. Trace how `{target_size_var}` gets its value
+2. Build an SMT expression showing the computation
+3. Handle:
+   - Direct literal values
+   - Arithmetic operations (add, sub, mul, div)
+   - Bitwise operations (and, or, shift)
+   - Function parameters from caller
+   - Complex expressions involving multiple variables
+
+CONSTRAINT IR SCHEMA:
+Each expression is a recursive tree:
+  - Symbol reference: {"symbol": "ioctl_input_size"}
+  - Literal value:    {"literal": 1024, "bitwidth": 32}
+  - Compound op:      {"op": "OP", "args": [EXPR, ...]}
+
+Supported ops:
+  Arithmetic: bvadd, bvsub, bvmul, bvudiv, bvsdiv
+  Bitwise:    bvand, bvor, bvxor, bvshl, bvlshr
+  Compare:    eq, ne, bvult, bvule, bvugt, bvuge
+  Boolean:    and, or, not, ite
+
+OUTPUT:
+Return STRICT JSON only:
+
+{
+  "size_origin_type": "literal" | "arithmetic" | "caller_param" | "complex_expr" | "unknown",
+  "size_expr": {
+    "op": "bvadd",
+    "args": [
+      {"symbol": "user_input_size"},
+      {"literal": 8, "bitwidth": 32}
+    ]
+  },
+  "caller_param": {
+    "param_name": "a3",
+    "index": 3
+  },
+  "bitwidth": 32,
+  "confidence": 0.9,
+  "notes": "Size is user_input_size + 8, where user_input_size comes from IOCTL input buffer"
+}
+
+If the size comes from a caller parameter, set size_origin_type to "caller_param" and include caller_param info.
+If it's a complex expression, provide the full SMT expression tree in size_expr.

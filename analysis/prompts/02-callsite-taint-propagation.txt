@@ -1,0 +1,66 @@
+CALLSITE_TAINT_MAP_JSON — Propagate taint across one call boundary (reverse direction)
+
+You are analyzing a single callsite in IDA/Hex-Rays pseudocode to propagate attacker-control
+(backwards climbing). Do NOT guess. Use only what's present in the snippet(s).
+
+GOAL
+Given that certain CALLEE parameters are tainted (attacker-controlled), determine what caller
+expressions/variables must be tainted at the callsite, and record an explicit mapping:
+"caller.X → callee.aN".
+
+CALLEE
+- Name: {callee_name} @ {callee_ea}
+- Prototype header (as decompiled):
+{callee_header}
+
+CALLEE TAINTED PARAMETERS (at entry)
+{callee_tainted_params_json}
+Example: {"parameters": [{"description": "dest", "param_id": 1, "tags": ["DATA_SINK"]}, {"description": "src", "param_id": 2, "tags": ["DATA_SOURCE"]}, {"description": "DATA_EXPRESSION", "param_id": 3, "tags": ["DATA_EXPRESSION"]}]}
+Tag definitions:
+  DATA_EXPRESSION/DATA_HANDLE - We're interested in the parameter at this index, so it's relevant to taint propagation
+  DATA_SOURCE/DATA_SINK - We're interested in the parameter at this index and we know it's a pointer, so it's relevant to taint propagation
+
+CALLER
+- Name: {caller_name} @ {caller_ea}
+
+CALLSITE CONTEXT (include the call line and ~20 lines around it; preserve line breaks)
+```c
+{caller_callsite_pseudocode}
+```
+
+OPTIONAL: IF THE CALL IS INSIDE AN IOCTL GUARD, PROVIDE THE GUARD TEXT
+{ioctl_guard_text_or_null}
+
+OUTPUT REQUIREMENTS
+Return STRICT JSON only with EXACTLY this schema:
+
+{
+  "caller": { "name": string, "ea": string },
+  "callee": { "name": string, "ea": string },
+  "callsite": {
+    "call_expression": string|null,          // the line containing the call if identifiable
+    "ioctl_guard": string|null,              // e.g., "case 0x222003"
+    "ioctl_code": string|null                // "0x..." if constant visible else null
+  },
+  "taint_mappings": [
+    {
+      "from": string,                         // e.g. "caller.a3" or "v12" or "Irp->AssociatedIrp.SystemBuffer"
+      "to": string,                           // e.g. "callee.a2"
+      "transform": "none"|"cast"|"offset"|"deref"|"and_mask"|"or_mask"|"add"|"sub"|"unknown",
+      "evidence_snippet": string|null         // short excerpt showing the argument expression
+    }
+  ],
+  "new_caller_taint": {
+    "tainted_entities": [ string ],           // what to mark tainted in the caller context (vars/params/fields)
+    "tainted_fields": {                       // OPTIONAL: field-level taint for C++ objects / structs
+      "<object_param>": [ "<field_name>", ... ]  // e.g. {"a1": ["field_0x18", "m_pBuffer"]}
+    },
+    "notes": string|null
+  },
+  "confidence": number
+}
+
+FIELD-LEVEL TAINT TRACKING:
+When a taint mapping involves a field access (e.g. this->m_pBuffer, *(a1 + 0x18), obj.field),
+include a "tainted_fields" key in new_caller_taint mapping object parameters to their tainted fields.
+This helps preserve taint through C++ object boundaries where a method receives 'this' and accesses fields.

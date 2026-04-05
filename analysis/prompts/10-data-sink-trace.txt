@@ -1,0 +1,58 @@
+DATA_SINK_TRACE_JSON — Trace destination buffer to allocation site
+
+You are analyzing a function to trace where a specific buffer variable comes from.
+
+FUNCTION: {function_name} @ {function_ea}
+TARGET VARIABLE: {target_variable}
+COPY SINK: {copy_sink_name}
+DEPTH: {current_depth}/{max_depth}
+
+PSEUDOCODE:
+```c
+{pseudocode}
+```
+
+ALLOCATION_SITE_DEFS (functions that allocate memory):
+[]
+
+TASK:
+1. Find where `{target_variable}` is assigned or originates from
+2. Check if it comes from:
+   - An allocator function call (ExAllocatePoolWithTag, ExAllocatePool2, etc.)
+   - A stack array declaration (e.g., `char buf[100];`)
+   - A global buffer reference
+   - A parameter from the caller (needs to climb up)
+   - An assignment from another variable (trace that variable)
+
+OUTPUT:
+Return STRICT JSON only:
+
+{
+  "origin_type": "allocator" | "stack" | "global" | "caller_param" | "assignment" | "unknown",
+  "allocator_info": {
+    "name": "ExAllocatePoolWithTag",
+    "ea": "0x12340",
+    "size_param": "NumberOfBytes",
+    "return_var": "v5"
+  },
+  "stack_info": {
+    "array_name": "buf",
+    "size": 100
+  },
+  "global_info": {
+    "var_name": "g_buffer",
+    "size": 1024
+  },
+  "caller_param": {
+    "param_name": "a2",
+    "index": 2
+  },
+  "assignment": {
+    "source_var": "src_var",
+    "transform": "none" | "cast" | "offset" | "deref"
+  },
+  "confidence": 0.9
+}
+
+If the variable comes from a caller parameter, set origin_type to "caller_param".
+If it's assigned from another variable, set origin_type to "assignment" with source_var.

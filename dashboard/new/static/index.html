@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sink Tracer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Cytoscape -->
+  <script src="https://unpkg.com/cytoscape@3.30.4/dist/cytoscape.min.js"></script>
+  <script src="https://unpkg.com/@dagrejs/dagre@1.1.4/dist/dagre.min.js"></script>
+  <script src="https://unpkg.com/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+
+  <!-- CSS (5 files) -->
+  <link rel="stylesheet" href="/static/css/tokens.css">
+  <link rel="stylesheet" href="/static/css/layout.css">
+  <link rel="stylesheet" href="/static/css/components.css">
+  <link rel="stylesheet" href="/static/css/graph.css">
+  <link rel="stylesheet" href="/static/css/utilities.css" id="last-css">
+  <script>
+    // Cache-bust all CSS
+    document.querySelectorAll('link[rel="stylesheet"]').forEach(l => {
+      l.href = l.href.split('?')[0] + '?t=' + Date.now();
+    });
+  </script>
+</head>
+<body>
+
+  <!-- ── Sidebar (left 260px) ──────────────────────────────────── -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-branding">
+      <div class="brand-icon">S</div>
+      <div class="brand-text">
+        <span class="brand-name">SINK TRACER</span>
+        <span class="brand-sub">Analysis Dashboard</span>
+      </div>
+    </div>
+
+    <div class="sidebar-nav">
+      <!-- Analysis Steps -->
+      <div>
+        <div class="nav-section-cap">Analysis Step</div>
+        <div id="step-indicators" class="step-row">
+          <div class="step-pip" data-step="A" title="Classify">A</div>
+          <div class="step-pip" data-step="B" title="Find edges">B</div>
+          <div class="step-pip" data-step="C" title="Lookahead">C</div>
+          <div class="step-pip" data-step="D" title="Vote">D</div>
+          <div class="step-pip" data-step="E" title="Taint">E</div>
+          <div class="step-pip" data-step="F" title="Advance">F</div>
+        </div>
+        <div id="step-description" class="dim small">—</div>
+      </div>
+
+      <!-- Current Chain -->
+      <div>
+        <div class="nav-section-cap">Current Chain</div>
+        <div id="chain-list" class="chain-list"></div>
+      </div>
+
+      <!-- Event Log -->
+      <div>
+        <div class="nav-section-cap">Event Log</div>
+        <div id="event-log" class="event-log"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Header (top 70px) ─────────────────────────────────────── -->
+  <header id="topbar" class="topbar">
+    <div class="topbar-left">
+      <div id="status-badge" class="badge badge-waiting">
+        <span class="badge-dot"></span>
+        <span id="status-text">WAITING</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="stat-group">
+        <div class="stat">
+          <span class="stat-value" id="stat-nodes">0</span>
+          <span class="stat-label">Nodes</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-edges">0</span>
+          <span class="stat-label">Edges</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-chains">0</span>
+          <span class="stat-label">Chains</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-backtracks">0</span>
+          <span class="stat-label">Backtracks</span>
+        </div>
+      </div>
+      <div class="topbar-shortcuts">
+        <span class="shortcut-key" title="Fit to viewport">F</span>
+        <span class="shortcut-key" title="Re-layout">R</span>
+        <span class="shortcut-key" title="Toggle panel">P</span>
+      </div>
+      <button id="panel-toggle" class="panel-toggle-btn" title="Toggle detail panel">
+        <span class="toggle-icon">&#9658;</span>
+        <span>Panel</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Main content (graph) ──────────────────────────────────── -->
+  <main id="main-content" class="main-content">
+    <div id="cy"></div>
+  </main>
+
+  <!-- ── Detail panel (right 400px, collapsible) ───────────────── -->
+  <aside id="panel" class="detail-panel">
+    <section class="panel-section">
+      <h2 class="section-title">Active Node</h2>
+      <div id="active-node-name" class="mono-lg">—</div>
+      <div id="function-prototype" class="prototype-block">prototype not available</div>
+      <div style="height: 4px;"></div>
+      <div id="active-node-addr" class="mono-sm dim">—</div>
+    </section>
+
+    <section class="panel-section">
+      <h2 class="section-title">Classification</h2>
+      <div id="classification-badges"></div>
+    </section>
+
+    <section class="panel-section hidden" id="taint-flow-section">
+      <h2 class="section-title">Taint Flow</h2>
+      <div id="taint-flow-list" class="taint-flow-list"></div>
+    </section>
+
+    <section class="panel-section hidden" id="smt-status-section">
+      <h2 class="section-title">SMT Feasibility</h2>
+      <div id="smt-status-badge" class="smt-badge"></div>
+      <div id="smt-stats" class="mono-sm dim"></div>
+      <div id="smt-solver-timeline" class="solver-timeline"></div>
+    </section>
+
+    <section class="panel-section hidden" id="smt-constraints-section">
+      <h2 class="section-title">Constraints</h2>
+      <div id="constraint-breakdown" class="constraint-breakdown"></div>
+      <div id="constraint-detail-list" class="constraint-list"></div>
+    </section>
+
+    <section class="panel-section hidden" id="poc-witness-section">
+      <h2 class="section-title">PoC Witness</h2>
+      <div id="poc-summary" class="poc-summary"></div>
+      <div id="poc-witness-list" class="witness-list"></div>
+    </section>
+
+    <section class="panel-section hidden" id="unsat-core-section">
+      <h2 class="section-title">UNSAT Core</h2>
+      <div id="unsat-core-list" class="core-list"></div>
+      <div id="unsat-core-explanation" class="dim small"></div>
+    </section>
+
+    <section class="panel-section hidden" id="smt-repair-section">
+      <h2 class="section-title">Repair Log</h2>
+      <div id="repair-log" class="repair-log"></div>
+    </section>
+  </aside>
+
+  <!-- ── Waiting overlay ───────────────────────────────────────── -->
+  <div id="waiting-overlay" class="overlay">
+    <div class="overlay-content">
+      <div class="waiting-spinner"></div>
+      <div class="waiting-text">WAITING FOR TRACER</div>
+      <div class="waiting-sub">Connect to a binary analysis session to begin</div>
+    </div>
+  </div>
+
+  <script>document.write('<scr'+'ipt src="/static/js/dashboard.js?t='+Date.now()+'"><\/scr'+'ipt>');</script>
+</body>
+</html>

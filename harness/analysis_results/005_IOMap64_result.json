@@ -1,0 +1,6 @@
+{
+  "driver": "005_IOMap64.sys",
+  "memory_dump": "analysis_results\\005_IOMap64.dmp",
+  "analysis_timestamp": 1771346027.8306959,
+  "status": "completed"
+}

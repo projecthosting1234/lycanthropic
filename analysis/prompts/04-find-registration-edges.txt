@@ -1,0 +1,65 @@
+REGISTRATION_EDGE_FINDER_JSON — Find function-pointer registration (DriverEntry / WDF config)
+
+You are analyzing how a callback/handler function becomes reachable from the OS in a Windows
+driver. The tool has enumerated DataRefsTo() for the function pointer and extracted nearby
+pseudocode snippets where the pointer is stored/used.
+
+IMPORTANT
+- "No direct callers" is NOT a dead end in drivers.
+- The goal is to find the *registration point* where the OS framework learns this entrypoint:
+  WDM: DriverObject->MajorFunction[], AddDevice, DriverUnload
+  KMDF: WdfDriverCreate(EvtDriverDeviceAdd), WdfIoQueueCreate(EvtIoDeviceControl/Read/Write), etc.
+
+TARGET FUNCTION (the callback/handler we are trying to explain reachability for)
+- Target: {target_name} @ {target_ea}
+- Known role hints (if any): {target_role_hints}
+
+DATAREF EVIDENCE BUNDLE
+Each item corresponds to one DataRefsTo hit and the tool's extracted usage context.
+
+{dataref_evidence_bundle_json}
+
+RUNTIME FUNCTION POINTER DATA (OPTIONAL)
+The following data was extracted from a live memory dump of the driver. Use this to resolve
+indirect calls that cannot be found statically. If runtime data is not available, ignore this section.
+
+{runtime_function_pointers_json}
+
+INDIRECT CALL HANDLING
+When a function is called indirectly via a function pointer:
+- Check if the call target matches a known function pointer from .data section
+- If the pointer value resolves to a known function, set edge_kind to "indirect_call_ptr"
+- If it's a function pointer table/array, set edge_kind to "indirect_call_table"  
+- If it's a local callback variable passed as parameter, set edge_kind to "local_callback"
+- Always prefer resolved targets over unknown pointers
+
+TASK
+1) Decide whether each evidence item represents a real registration of the target function.
+2) If yes, identify:
+   - registration kind (WDM MajorFunction index, KMDF queue callback, KMDF driver config, etc.)
+   - the registrant function where this assignment occurs (the function we must climb to)
+   - any dispatch selector info (IRP major code, IOCTL code, queue type)
+
+OUTPUT REQUIREMENTS
+Return STRICT JSON only with EXACTLY this schema:
+
+{
+  "target": { "name": string, "ea": string },
+  "registration_edges": [
+    {
+      "registrant_function": { "name": string, "ea": string },
+      "registered_target": { "name": string, "ea": string },
+      "kind": "WDM_MajorFunction"|"WDM_AddDevice"|"WDM_Unload"|"KMDF_WdfDriverCreate"|"KMDF_WdfIoQueueCreate"|"Other"|"Unknown",
+      "details": {
+        "irp_major": string|null,            // e.g. "IRP_MJ_DEVICE_CONTROL" or "0x0E"
+        "majorfunction_index": string|null,  // "0xE" if visible
+        "kmdf_callback_field": string|null,  // e.g. "EvtIoDeviceControl"
+        "ioctl_code": string|null            // "0x..." if visible in the registration context
+      },
+      "evidence_snippet": string|null,
+      "confidence": number
+    }
+  ],
+  "recommended_next_registrant": { "name": string, "ea": string }|null,
+  "confidence": number
+}

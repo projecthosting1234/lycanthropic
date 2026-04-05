@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+package nt.irp;
+
+// Define a custom option so we can attach the C-struct offset to each field
+extend google.protobuf.FieldOptions {
+  uint32 win_offset = 50001;
+}
+
+message IRP {
+    // Offset 0x8: MdlAddress (Pointer)
+    uint64 mdl_address = 1 [(win_offset) = 0x8];
+
+    // Offset 0x10: Flags (ULONG is 32-bit)
+    uint32 flags = 2 [(win_offset) = 0x10];
+
+    // Offset 0x18: AssociatedIrp Union
+    oneof associated_irp {
+        uint64 master_irp = 3 [(win_offset) = 0x18];
+        int32 irp_count = 4 [(win_offset) = 0x18];
+        uint64 system_buffer = 5 [(win_offset) = 0x18];
+    }
+}

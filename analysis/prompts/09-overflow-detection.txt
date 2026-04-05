@@ -1,0 +1,31 @@
+OVERFLOW DETECTION - Trace Data Sink to Allocation Site
+
+You are analyzing a copy function (e.g., memcpy, memmove) that may cause heap or stack overflow.
+
+CURRENT STATE:
+- Code sink: {code_sink_name} @ {address}
+- Data sink parameter: {data_sink_param} (the buffer being written to)
+- Size parameter: {size_param} (user-controlled length)
+- Source parameter: {source_param} (user input)
+
+TASK:
+1. Analyze the pseudocode to trace where the {data_sink_param} buffer comes from
+2. Check if {data_sink_param} is the return value of an allocation function (e.g., ExAllocatePoolWithTag)
+3. If yes, identify:
+   - The allocator function name and its address
+   - The size parameter passed to the allocator
+   - Whether this size is derived from user input
+4. Check if {size_param} (the copy size) is user-controlled
+5. Check if the allocation size is smaller than the copy size (potential overflow condition)
+
+Return JSON:
+{{
+  "data_sink_allocation_site": "function_name@address or null",
+  "allocator_name": "ExAllocatePoolWithTag or null",
+  "allocator_size_param": "param_name@address or null",
+  "allocator_size_user_controlled": true/false/null,
+  "copy_size_user_controlled": true/false/null,
+  "controlled_source": true/false/null,
+  "potential_overflow": true/false/null,
+  "evidence": "explanation of the data flow"
+}}

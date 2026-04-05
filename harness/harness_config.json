@@ -1,0 +1,20 @@
+{
+  "vm_name": "win11-box",
+  "ssh_hostname": "10.20.45.24",
+  "ssh_username": "box",
+  "ssh_password": "1234",
+  "ssh_port": 22,
+  "sorted_dir": "sorted_drivers/",
+  "results_dir": "analysis_results/",
+  "dump_dir": "analysis_results/",
+  "driver_load_timeout": 30,
+  "memory_dump_timeout": 60,
+  "vm_boot_timeout": 120,
+  "snapshot_name": "clean_state",
+  "windbg": {
+    "debugger_path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x64",
+    "connection_string": "net:port=50000,key=1.2.3.4",
+    "dump_type": "mini",
+    "local_dump_dir": "C:\\Users\\legitdev\\Downloads\\windows-defender-remover-main"
+  }
+}

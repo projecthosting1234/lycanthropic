@@ -1,0 +1,6 @@
+{
+  "driver": "004_hwdetectng.sys",
+  "memory_dump": "analysis_results\\004_hwdetectng.dmp",
+  "analysis_timestamp": 1771346012.0339026,
+  "status": "completed"
+}

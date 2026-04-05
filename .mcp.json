@@ -1,0 +1,41 @@
+{
+  "mcpServers": {
+    "windbg": {
+      "type": "sse",
+      "url": "http://localhost:8765/sse"
+    },
+    "pwnmcp": {
+      "command": "C:\\Users\\security\\Desktop\\LPE-finder\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "windows_exploit_dev.mcp.pwntools"
+      ],
+      "cwd": "C:\\Users\\security\\Desktop\\LPE-finder",
+      "env": {
+        "PWNMCP_VCVARS_BAT": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"
+      }
+    },
+    "angrop": {
+      "command": "C:\\Users\\security\\Desktop\\LPE-finder\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "windows_exploit_dev.mcp.angrop"
+      ],
+      "cwd": "C:\\Users\\security\\Desktop\\LPE-finder",
+      "env": {
+        "ANGROP_ITERATION_DIR": "C:\\Users\\security\\Desktop\\LPE-finder\\exploits_out\\BioNTdrv\\iteration_005",
+        "ANGROP_KERNEL_PATH": "C:\\Users\\security\\Desktop\\LPE-finder\\exploits_out\\BioNTdrv\\iteration_005\\rop_files\\ntoskrnl.exe",
+        "ANGROP_DRIVER_PATH": "C:\\Users\\security\\Desktop\\LPE-finder\\exploits_out\\BioNTdrv\\iteration_005\\rop_files\\BioNTdrv.sys"
+      }
+    },
+    "kg": {
+      "command": "C:\\Users\\security\\Desktop\\LPE-finder\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "windows_exploit_dev.mcp.kg"
+      ],
+      "cwd": "C:\\Users\\security\\Desktop\\LPE-finder",
+      "env": {}
+    }
+  }
+}

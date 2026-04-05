@@ -1,0 +1,49 @@
+STOPPOINT_LOOKAHEAD_JSON — Decide stop vs continue, enforcing "registration is the source" + lookahead
+
+You are controlling a climber that MUST stop only at the canonical registration point
+(not at dispatch/callback itself). Apply lookahead: if there is a plausible higher-level
+registration site, we must continue climbing.
+
+CURRENT NODE
+- Function: {current_name} @ {current_ea}
+- Chain (sink → ... → current):
+{call_chain_text}
+
+CURRENT FACTS (from prompt A)
+{current_facts_json}
+
+KNOWN UPWARD EDGES
+- Direct callers (CodeRefsTo): {direct_callers_json}
+- Registration edges (from prompt D), if any: {registration_edges_json}
+
+HARD STOP CONDITIONS (ONLY stop if one is satisfied with evidence)
+- WDM stop: DriverEntry (or equivalent entry) where DriverObject->MajorFunction[...] is assigned
+  for the path-relevant major code (typically DEVICE_CONTROL/INTERNAL_DEVICE_CONTROL/READ/WRITE).
+- KMDF stop: the function where the relevant callback is registered:
+  - WdfIoQueueCreate config sets EvtIoDeviceControl/EvtIoRead/EvtIoWrite to the handler in our chain, OR
+  - WdfDriverCreate config sets EvtDriverDeviceAdd that leads to queue creation for our chain.
+  (You may need to continue until DriverEntry if EvtDriverDeviceAdd registration is still above.)
+
+LOOKAHEAD RULE
+If CURRENT is a dispatch/callback and there exists a higher registration edge above it that we have
+not yet incorporated, you MUST say "continue".
+
+OUTPUT REQUIREMENTS
+Return STRICT JSON only with EXACTLY this schema:
+
+{
+  "should_stop": boolean,
+  "stop_kind": "WDM_DriverEntry_MajorFunction_Assignment"|
+               "KMDF_WdfIoQueueCreate_Callback_Registration"|
+               "KMDF_WdfDriverCreate_EvtDriverDeviceAdd_Registration"|
+               "NotAStopPoint",
+  "evidence": {
+    "why_stop_or_continue": string,
+    "missing_lookahead_item": string|null   // e.g. "need registrant of EvtIoDeviceControl" or null
+  },
+  "next_action": {
+    "action": "continue_climb"|"force_find_registration"|"terminate_as_unreachable",
+    "target_function": { "name": string, "ea": string }|null
+  },
+  "confidence": number
+}

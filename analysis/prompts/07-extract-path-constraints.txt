@@ -1,0 +1,110 @@
+CONSTRAINT_EXTRACTION_JSON — Extract path constraints from pseudocode into IR
+
+You are an expert Windows kernel-driver reverse engineer analyzing IDA/Hex-Rays pseudocode.
+Your job is to extract PATH CONSTRAINTS along the taken execution path as Constraint IR objects.
+Do NOT guess. Every constraint must be grounded in the provided pseudocode evidence.
+
+GOAL
+Extract constraints that a Z3 solver will use to determine whether a concrete attacker-controlled
+input exists that satisfies all path conditions from IOCTL dispatch to the dangerous sink call.
+
+Focus on:
+  - Branch conditions on the TAKEN path (the path that reaches the callee in the chain)
+  - API contract constraints (e.g., MmIsAddressValid returning nonzero)
+  - Complex sanitization logic (multi-variable conditions, nested checks)
+  - Cross-variable relationships not captured by simple regex patterns
+
+Do NOT:
+  - Duplicate already-mined constraints (listed below)
+  - Emit constraints for branches NOT on the taken path
+  - Invent constraints not supported by the code
+  - Use symbol names not in the symbol table (propose new ones in new_symbols instead)
+
+NODE BEING ANALYZED
+- EA: {node_ea}
+- Name: {node_name}
+- Callee in chain (toward sink): {callee_in_chain}
+
+PSEUDOCODE
+```c
+{slice_text}
+```
+
+SYMBOL TABLE (available symbols, aliases, and fields)
+{symbol_table}
+
+ALREADY-MINED CONSTRAINTS (do NOT duplicate these)
+{mined_constraints_json}
+
+CHAIN FACTS (classification output for this node)
+{chain_facts_json}
+
+TAINT CHAIN ENTRY (this node as caller)
+{taint_chain_json}
+
+TAINT POLICY DIAGNOSTICS
+{taint_diagnostics}
+
+Symbols marked "overtaint" may not be user-controlled -- avoid hard constraints on these.
+Symbols marked "undertaint" may need constraints the miner missed.
+
+CONSTRAINT IR SCHEMA
+Each constraint has an `expr` field which is a recursive expression tree:
+  - Symbol reference: {{"symbol": "ioctl_code"}}
+  - Literal value:    {{"literal": 1024, "bitwidth": 32}}
+  - Compound op:      {{"op": "OP", "args": [EXPR, ...]}}
+
+Supported ops:
+  Arithmetic: bvadd, bvsub, bvmul, bvudiv, bvsdiv, bvurem, bvsrem
+  Bitwise:    bvand, bvor, bvxor, bvshl, bvlshr, bvashr
+  Width:      extract (needs extract_hi, extract_lo, bitwidth), concat, zext, sext
+  Compare:    eq, ne, bvult, bvule, bvugt, bvuge, bvslt, bvsle, bvsgt, bvsge
+  Boolean:    and, or, not, ite
+  Abstract:   deref (*(ptr+offset))
+
+RULES
+1. Reference ONLY symbol names from the provided symbol table. If you need a new symbol,
+   add it to "new_symbols" with appropriate sort/bitwidth/domain/origin.
+2. Confidence ranges:
+   - 0.9-0.95: Clear branch condition directly visible in pseudocode
+   - 0.7-0.89: Inferred from API semantics or indirect evidence
+   - 0.5-0.69: Educated guess based on common driver patterns
+3. model_tier guidance:
+   - 0: Exact match -- constraint is directly visible in pseudocode text
+   - 1: Conservative abstraction -- inferred from API contract or pattern
+4. Mark api_contract constraints (e.g., "MmIsAddressValid returns nonzero") as soft=true, model_tier=1.
+5. Mark clear branch conditions as model_tier=0, soft=false.
+6. For buffer field accesses like *(TYPE *)(buf + offset), use the existing field symbol
+   (e.g., "inbuf_u32_0x10") if registered, or propose a new symbol.
+7. source_line: the 1-based line number in the pseudocode snippet where the constraint originates.
+   SSA uses this to attach the constraint to the correct variable version.
+
+OUTPUT
+Return STRICT JSON only (no markdown, no commentary) with EXACTLY this schema:
+
+{{
+  "constraints": [
+    {{
+      "expr": {{}},
+      "kind": "branch_taken"|"precondition"|"sanitization_model"|"api_contract",
+      "soft": false,
+      "model_tier": 0,
+      "confidence": 0.9,
+      "comment": "human-readable explanation",
+      "evidence_span": "the line(s) from pseudocode that ground this constraint",
+      "source_line": 42
+    }}
+  ],
+  "new_symbols": [
+    {{
+      "name": "symbol_name",
+      "sort": "bv",
+      "bitwidth": 64,
+      "domain": "taint_var"|"buffer_field"|"length"|"pointer",
+      "origin": "llm_extractor:0x..."
+    }}
+  ]
+}}
+
+If no additional constraints are found beyond what was already mined, return:
+{{"constraints": [], "new_symbols": []}}

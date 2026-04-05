@@ -1,0 +1,73 @@
+/* ================================================================
+   DESIGN TOKENS — MaterialM Dark Theme
+   Single source of truth for all visual properties
+   ================================================================ */
+
+:root {
+  /* ── Background layers ─────────────────────────────────────── */
+  --bg-void:          #111c2d;
+  --bg-deep:          #1a2537;
+  --bg-surface:       #1f2a3d;
+  --bg-raised:        #253247;
+  --bg-hover:         #333f55;
+
+  /* ── Borders ───────────────────────────────────────────────── */
+  --border-dim:       #313e54;
+  --border-mid:       #3d4d66;
+
+  /* ── Text ──────────────────────────────────────────────────── */
+  --text-primary:     rgba(255, 255, 255, 0.85);
+  --text-secondary:   rgba(255, 255, 255, 0.6);
+  --text-dim:         rgba(255, 255, 255, 0.3);
+
+  /* ── Primary accent (MaterialM blue) ───────────────────────── */
+  --accent:           #00a1ff;
+  --accent-dim:       #0070b3;
+  --accent-glow:      rgba(0, 161, 255, 0.15);
+  --accent-glow-strong: rgba(0, 161, 255, 0.35);
+
+  /* ── Semantic colors ───────────────────────────────────────── */
+  --success:          #00ceb6;
+  --success-dim:      #1b3c48;
+  --success-glow:     rgba(0, 206, 182, 0.2);
+
+  --error:            #ff6692;
+  --error-dim:        #4b313d;
+  --error-glow:       rgba(255, 102, 146, 0.2);
+
+  --warning:          #ffae1f;
+  --warning-dim:      #4d3a2a;
+  --warning-glow:     rgba(255, 174, 31, 0.2);
+
+  --purple:           #8965e5;
+  --purple-dim:       #2a2047;
+
+  --cyan:             #46caeb;
+  --cyan-dim:         #1b3040;
+
+  /* ── Sink palette (up to 6 sinks on one graph) ─────────────── */
+  --sink-0:           #ff6692;
+  --sink-1:           #ffae1f;
+  --sink-2:           #8965e5;
+  --sink-3:           #46caeb;
+  --sink-4:           #00ceb6;
+  --sink-5:           #00a1ff;
+
+  /* ── Layout ────────────────────────────────────────────────── */
+  --sidebar-width:    260px;
+  --topbar-height:    70px;
+  --panel-width:      400px;
+
+  /* ── Typography ────────────────────────────────────────────── */
+  --font-sans:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:        'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* ── Radii ─────────────────────────────────────────────────── */
+  --radius-card:      24px;
+  --radius-pill:      30px;
+  --radius-sm:        8px;
+
+  /* ── Shadows (MaterialM) ───────────────────────────────────── */
+  --shadow-card:      rgba(145, 158, 171, 0.3) 0px 0px 2px 0px,
+                      rgba(145, 158, 171, 0.02) 0px 12px 24px -4px;
+}

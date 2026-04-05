@@ -1,0 +1,50 @@
+# Kernel Research Agent - Orchestrator Configuration
+
+providers:
+  claude:
+    api_key_env: ANTHROPIC_API_KEY
+    model: claude-sonnet-4-5-20250929        # fast + capable for tool coordination
+    max_tokens: 16384
+    extended_thinking:
+      enabled: false                          # save budget — enable for complex analysis
+    auxiliary:
+      model: claude-haiku-4-5-20251001
+
+  openai:
+    api_key_env: OPENAI_API_KEY
+    model: gpt-4.1-2025-04-14
+    max_tokens: 16384
+    auxiliary:
+      model: gpt-4.1-mini-2025-04-14
+
+alloy:
+  strategy: strategic
+  reasoning_model: claude
+  workhorse_model: openai
+
+mcp_servers:
+  windbg:
+    transport: stdio
+    command: "C:\\Users\\security\\PycharmProjects\\WindowsExp\\.venv\\Scripts\\python.exe"
+    args: ["-m", "windbg_mcp"]
+    env:
+      CONNECTION_STRING: "${WINDBG_CONNECTION_STRING}"
+
+  ida:
+    transport: stdio
+    command: "C:\\Users\\security\\PycharmProjects\\WindowsExp\\.venv\\Scripts\\python.exe"
+    args: ["-m", "ida_mcp"]
+    env:
+      IDA_MCP_BINARY: "${IDA_MCP_BINARY}"
+
+orchestrator:
+  max_turns: 50
+  max_consecutive_errors: 3
+  context_limit_tokens: 180000
+
+cache:
+  tool_cache_size: 512
+  tool_cache_ttl: 3600
+
+knowledge_base:
+  system_prompt_path: ./CLAUDE.md

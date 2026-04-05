@@ -1,0 +1,67 @@
+VOTE_NEXT_CALLER_JSON — Choose the next upward step among candidates (CodeRefsTo + DataRefsTo)
+
+You are guiding an automated climber in IDA. We are climbing from a sink upward to the
+canonical input source REGISTRATION POINT (do NOT stop at dispatch/callback).
+We must support BOTH WDM IRP dispatch and KMDF callbacks.
+
+CURRENT NODE
+- Function: {current_name} @ {current_ea}
+- Call chain (sink → ... → current):
+{call_chain_text}
+
+CURRENT TAINT STATE (at entry to CURRENT function)
+{current_taint_state_json}
+
+CANDIDATE UPWARD EDGES (already enumerated by the tool)
+Each candidate is either:
+- "direct_caller" (from CodeRefsTo), or
+- "registrant" (from DataRefsTo / function-pointer registration site)
+- "indirect_call_ptr" (call via function pointer in .data)
+- "indirect_call_table" (call via function pointer table/array)
+- "local_callback" (callback passed as parameter or returned from another function)
+- "data_ptr_assignment" (function ptr assigned from .data section)
+- "cross_driver" (driver boundary edge)
+
+For each candidate, you are given:
+- candidate summary facts (from prompt A)
+- a best-effort callsite taint map (from prompt B), if available
+
+CANDIDATES JSON
+{candidates_bundle_json}
+
+RUNTIME FUNCTION POINTER DATA (if available)
+This data was extracted from a live memory dump. Use it to resolve indirect calls.
+
+{runtime_function_pointers_json}
+
+DECISION RULES (HARD REQUIREMENTS)
+1) Prefer paths that lead to the registration point:
+   - WDM: DriverEntry assignment to DriverObject->MajorFunction[IRP_MJ_*] / AddDevice / etc.
+   - KMDF: WdfDriverCreate registering EvtDriverDeviceAdd; WdfIoQueueCreate registering EvtIoDeviceControl/EvtIoRead/EvtIoWrite
+2) If CURRENT looks like an IOCTL handler or KMDF EvtIoDeviceControl, you MUST prefer a "registrant" edge
+   (function pointer registration) over an arbitrary internal direct caller, if such a registrant edge exists.
+3) Maintain explicit taint mapping across the selected edge.
+
+OUTPUT REQUIREMENTS
+Return STRICT JSON only with EXACTLY this schema:
+
+{
+  "selected_edge": {
+    "edge_kind": "direct_caller"|"registrant",
+    "from_function": { "name": string, "ea": string },   // the chosen next node upward
+    "to_function": { "name": string, "ea": string }      // the current node (echo)
+  },
+  "why_this_edge": {
+    "registration_likelihood": number,                   // 0.0-1.0
+    "input_reachability_likelihood": number,             // 0.0-1.0
+    "taint_preservation_likelihood": number,             // 0.0-1.0
+    "notes": string
+  },
+  "taint_update_for_next_node": {
+    "next_node_tainted_entities": [ string ],            // params/vars/fields in the NEXT node to mark tainted
+    "mappings_used": [
+      { "from": string, "to": string }                   // e.g. "next.a3" → "current.a2"
+    ]
+  },
+  "confidence": number
+}
