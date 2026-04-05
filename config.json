@@ -216,7 +216,7 @@
   "llm": {
     "default_provider": "openai",
     "max_tokens": 100000,
-    "openai_api_key": "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",
+    "openai_api_key": "REDACTED",
     "exploitdev_handoff_model": "gpt-5.4-2026-03-05",
     "exploitdev_strategy_model": "gpt-5.4-pro-2026-03-05",
     "providers": {
